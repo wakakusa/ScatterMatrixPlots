@@ -3,7 +3,13 @@ module ScatterMatrixPlots
 
 # package code goes here
 using Gadfly, Compose, DataFrames
+
+import Compose: draw, hstack, vstack, gridstack, isinstalled, parse_colorant, parse_colorant_vec
+
 export ScatterMatrixPlot,ScatterMatrix,open_imagefile
+
+# Re-export some essentials from Compose
+export SVGJS, SVG, PGF, PNG, PS, PDF, draw, inch, mm, cm, px, pt, color, @colorant_str, vstack, hstack
 
 function ScatterMatrix(olddf, colorido=[], legenda=true)
     df = olddf[complete_cases(olddf),:]
@@ -69,7 +75,7 @@ function open_imagefile(filename)
 end
 
 
-function ScatterMatrixPlot(olddf, colorido=[],filepath::AbstractString="scattermatrix",mime::AbstractString="svg",xwidth=15cm,ywidth=15cm,legenda::Bool=true)
+function ScatterMatrixPlot(olddf, colorido=[];filepath::AbstractString="scattermatrix",mime::AbstractString="svg",xwidth=20cm,ywidth=20cm,legenda::Bool=true)
     pl=ScatterMatrix(olddf, colorido, legenda)
 
     if( (mime=="svg"||mime=="SVG")==true)
