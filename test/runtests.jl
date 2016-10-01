@@ -8,14 +8,18 @@ using Base.Test
 x=1:10
 y1=2x
 y2=2x-1
-label=["a","a","a","b","b","b","b","c","c","c"]
-df=DataFrame(x=x,y1=y1,y2=y2,label=label)
+label1=["a","a","a","b","b","b","b","c","c","c"]
+label2=["1","2","3","1","2","3","1","2","3","1"]
+df1=DataFrame(x=x,y1=y1,y2=y2,label1=label1)
+df2=DataFrame(x=x,y1=y1,y2=y2,label1=label1,label2=label2)
 
 #ファイル表示まで一括
-ScatterMatrixPlot(df, "label")
+ScatterMatrixPlot(df1)
+ScatterMatrixPlot(df1, "label1")
+ScatterMatrixPlot(df2)
+
 
 #個別指示
-pl=ScatterMatrix(df, "label")
+pl=ScatterMatrix(df1, colorido="label1")
 image=draw(SVG("scattermatrixplot.svg", 10inch, 10inch), pl)
 open_imagefile("scattermatrixplot.svg")
-

@@ -38,7 +38,11 @@ function ScatterMatrix(olddf, colorido=[], legenda=true)
             end
             if nowcor#Cor Info
                 index1 = complete_cases(df[:,[i,j]])
-                text0 = "Corr: "*string(trunc(cor(df[index1,i],df[index1,j]),4))
+		if(issubtype(eltype(df[index1,i]),Real)&&issubtype(eltype(df[index1,j]),Real)==true)
+	                text0 = "Corr: "*string(trunc(cor(df[index1,i],df[index1,j]),4))
+		else
+			text0="can not calculation"
+		end
                 M[indexi,indexj] = compose(context(),
                 (context(), text(0.5, 0.5, text0, hcenter)),
                 (context(0.1w, 0.1h, 0.8w, 0.8h), rectangle(), fill("white"), stroke("black")))#))
@@ -63,24 +67,31 @@ function ScatterMatrix(olddf, colorido=[], legenda=true)
 end
 
 function open_imagefile(filename)
-    if OS_NAME == :Darwin
+    if is_apple()
         run(`open $(filename)`)
-    elseif OS_NAME == :Linux || OS_NAME == :FreeBSD
+    elseif is_linux() || is_bsd()
         run(`xdg-open $(filename)`)
-    elseif OS_NAME == :Windows
+    elseif is_windows()
         run(`$(ENV["COMSPEC"]) /c start $(filename)`)
     else
-        warn("Showing plots is not supported on OS $(string(OS_NAME))")
+        warn("Showing plots is not supported on OS $(string(Compat.KERNEL))")
     end
 end
 
 
-function ScatterMatrixPlot(olddf, colorido=[];filepath::AbstractString="scattermatrix",mime::AbstractString="svg",xwidth=20cm,ywidth=20cm,legenda::Bool=true)
+function ScatterMatrixPlot(olddf,colorido=[];filepath::AbstractString="scattermatrix",mime::AbstractString="svg",xwidth=0cm,ywidth=0cm,legenda::Bool=false)
     pl=ScatterMatrix(olddf, colorido, legenda)
+
+   if(xwidth==0cm)
+	xwidth=(sizeof(olddf)[1]*2)cm
+   end
+   if(ywidth==0cm)
+	ywidth=(sizeof(olddf)[1]*2)cm
+   end
 
     if( (mime=="svg"||mime=="SVG")==true)
         image=draw(SVG(filepath, xwidth, ywidth), pl)
-    elseif ( (mime=="png"||mime=="PMG")==true)
+    elseif ( (mime=="png"||mime=="PNG")==true)
             image=draw(PNG(filepath, xwidth, ywidth), pl)
     else
             image=draw(SVG(filepath, xwidth, ywidth), pl)
