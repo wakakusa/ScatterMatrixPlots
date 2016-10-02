@@ -20,9 +20,9 @@ df2=DataFrame(x=x,y1=y1,y2=y2,label1=label1,label2=label2)
 ScatterMatrixPlot(df1)  
 ScatterMatrixPlot(df1, "label1") #ラベル付きで表示する場合  
 
-#### DataFrameに文字列のデータが複数ある場合、凡例を指定するとエラーになる
+#### DataFrameに文字列のデータが複数ある場合
 ScatterMatrixPlot(df2)  
-ScatterMatrixPlot(df2, "label1") #error  
+ScatterMatrixPlot(df2, "label1")  
 
 
 ### 出力するファイルのサイズ等を細かく制御する場合

@@ -15,8 +15,9 @@ df2=DataFrame(x=x,y1=y1,y2=y2,label1=label1,label2=label2)
 
 #ファイル表示まで一括
 ScatterMatrixPlot(df1)
-ScatterMatrixPlot(df1, "label1")
+ScatterMatrixPlot(df1, colorido="label1")
 ScatterMatrixPlot(df2)
+ScatterMatrixPlot(df2, colorido="label1")
 
 
 #個別指示

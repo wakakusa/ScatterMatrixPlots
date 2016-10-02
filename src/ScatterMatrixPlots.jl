@@ -51,9 +51,15 @@ function ScatterMatrix(olddf, colorido=[], legenda=true)
                 if legenda
                     kps=:right
                 end
-                M[indexi,indexj] = render(plot(df, x=string(j), y=string(i), color=colorido, gdplot(maxbincount=20),
-                Guide.xlabel(xName), Guide.ylabel(yName), Guide.xticks(label=xTickMarks), Guide.yticks(label=yTickMarks), 
-                Theme(grid_line_width=1pt, panel_stroke=colorant"black", key_position=kps)))
+		if(issubtype(eltype(df[:,i]),String)&&issubtype(eltype(df[:,j]),String)==true)
+			text0="can not plot"
+			M[indexi,indexj] = compose(context(), (context(), text(0.5, 0.5, text0, hcenter)),
+                	(context(0.1w, 0.1h, 0.8w, 0.8h), rectangle(), fill("white"), stroke("black")))#))
+		else
+       	        	 M[indexi,indexj] = render(plot(df, x=string(j), y=string(i), color=colorido, gdplot(maxbincount=20),
+       	         	Guide.xlabel(xName), Guide.ylabel(yName), Guide.xticks(label=xTickMarks), Guide.yticks(label=yTickMarks), 
+       	         	Theme(grid_line_width=1pt, panel_stroke=colorant"black", key_position=kps)))
+		end
                 nowcor=true
             else #scatterplots
 		kps=:none
@@ -79,7 +85,7 @@ function open_imagefile(filename)
 end
 
 
-function ScatterMatrixPlot(olddf,colorido=[];filepath::AbstractString="scattermatrix",mime::AbstractString="svg",xwidth=0cm,ywidth=0cm,legenda::Bool=false)
+function ScatterMatrixPlot(olddf;colorido=[],filepath::AbstractString="scattermatrix",mime::AbstractString="svg",xwidth=0cm,ywidth=0cm,legenda::Bool=false)
     pl=ScatterMatrix(olddf, colorido, legenda)
 
    if(xwidth==0cm)
