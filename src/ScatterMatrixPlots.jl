@@ -89,10 +89,10 @@ function ScatterMatrixPlot(olddf;colorido=[],filepath::AbstractString="scatterma
     pl=ScatterMatrix(olddf, colorido, legenda)
 
    if(xwidth==0cm)
-	xwidth=(size(olddf)[2]*5.5)cm
+	xwidth=((size(olddf)[2]+1)*5)cm
    end
    if(ywidth==0cm)
-	ywidth=(size(olddf)[2]*5.5)cm
+	ywidth=((size(olddf)[2]+1)*5)cm
    end
 
     if( (mime=="svg"||mime=="SVG")==true)
