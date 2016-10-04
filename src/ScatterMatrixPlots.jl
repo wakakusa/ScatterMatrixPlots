@@ -11,7 +11,7 @@ export ScatterMatrixPlot,ScatterMatrix,open_imagefile
 # Re-export some essentials from Compose
 export SVGJS, SVG, PGF, PNG, PS, PDF, draw, inch, mm, cm, px, pt, color, @colorant_str, vstack, hstack
 
-function ScatterMatrix(olddf::DataFrame, colorido::AbstractString=[], legenda::Bool=true)
+function ScatterMatrix(olddf::DataFrame, colorido=[], legenda::Bool=true)
     df = olddf[complete_cases(olddf),:]
     n = size(df, 2)
     nomes = names(df)
@@ -85,8 +85,8 @@ function open_imagefile(filename::AbstractString)
 end
 
 
-function ScatterMatrixPlot(olddf::DataFrame;colorido=[]::AbstractString,filepath::AbstractString="scattermatrix",mime::AbstractString="svg",xwidth=0cm,ywidth=0cm,legenda::Bool=false)
-    pl=ScatterMatrix(olddf, colorido, legenda)
+function ScatterMatrixPlot(olddf::DataFrame;colorido=[],filepath::AbstractString="scattermatrix",mime::AbstractString="svg",xwidth=0cm,ywidth=0cm,legenda::Bool=false)
+  pl=ScatterMatrix(olddf, colorido, legenda)
 
    if(xwidth==0cm)
 	xwidth=((size(olddf)[2]+1)*5)cm
