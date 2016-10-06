@@ -20,7 +20,5 @@ ScatterMatrixPlot(df2)
 ScatterMatrixPlot(df2, colorido="label1")
 
 
-#個別指示
-pl=ScatterMatrix(df1, colorido="label1")
-image=draw(SVG("scattermatrixplot.svg", 10inch, 10inch), pl)
-open_imagefile("scattermatrixplot.svg")
+#詳細設定
+ScatterMatrixPlot(df1, colorido="label1",xwidth=10cm,ywidth=15cm)

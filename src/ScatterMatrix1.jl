@@ -1,4 +1,4 @@
-function ScatterMatrix(olddf::DataFrame, colorido=[], legenda::Bool=true)
+function ScatterMatrix1(olddf::DataFrame, colorido=[], legenda::Bool=true)
     df = olddf[complete_cases(olddf),:]
     n = size(df, 2)
     nomes = names(df)
