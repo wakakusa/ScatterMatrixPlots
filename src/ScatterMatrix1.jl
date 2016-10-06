@@ -23,8 +23,13 @@ function ScatterMatrix1(olddf::DataFrame, colorido=[], legenda::Bool=true)
                 xName=string(j)
                 xTickMarks=true
             end
+
+            kps=:none
+            if legenda
+               kps=:right
+            end
+            
             if nowcor#Cor Info
-		kps=:none
                 M[indexi,indexj] = render(plot(df, x=string(j), y=string(i), color=colorido, gdplot,
                 Guide.xlabel(nothing), Guide.ylabel(nothing), Guide.xticks(label=xTickMarks), Guide.yticks(label=yTickMarks), 
                 Theme(panel_stroke=colorant"black", key_position=kps)))
@@ -34,7 +39,6 @@ function ScatterMatrix1(olddf::DataFrame, colorido=[], legenda::Bool=true)
                	(context(0.1w, 0.1h, 0.8w, 0.8h), rectangle(), fill("white"), stroke("black")))#))
                 nowcor=true
             else #scatterplots
-		kps=:none
                 M[indexi,indexj] = render(plot(df, x=string(j), y=string(i), color=colorido, gdplot,
                 Guide.xlabel(nothing), Guide.ylabel(nothing), Guide.xticks(label=xTickMarks), Guide.yticks(label=yTickMarks), 
                 Theme(panel_stroke=colorant"black", key_position=kps)))
