@@ -1,9 +1,19 @@
-# ScatterMatrixPlots
+ScatterMatrixPlots
+==============================
 散布図行列を作成します
 
 ## 関数
 ### ScatterMatrixPlot(olddf:データセット名, colorido:凡例,filepath:ファイルパス,mime:画像フォーマット,xwidth:横長,ywidth:縦長,legenda:凡例の出力有無)  
 指定されたデータセットから散布図行列を作成し、表示  
+  
+<引数>  
+olddf:データセット名  
+colorido:凡例  
+filepath:ファイルパス  
+mime:画像フォーマット  
+xwidth:横長  
+ywidth:縦長  
+legenda:凡例の出力有無  
 ### ScatterMatrix(olddf:データセット名, colorido:凡例,legenda:凡例の出力有無)  
 指定されたデータセットから散布図行列を作成。ファイルに書き出す場合、Gadflyのdrawコマンドを使って出力  
   

@@ -1,5 +1,5 @@
 function ScatterMatrix2(olddf::DataFrame, colorido=[], legenda::Bool=true)
-    df = olddf[complete_cases(olddf),:]
+    df = olddf[completecases(olddf),:]
     n = size(df, 2)
     nomes = names(df)
     if colorido!=[]
@@ -24,7 +24,7 @@ function ScatterMatrix2(olddf::DataFrame, colorido=[], legenda::Bool=true)
                 xTickMarks=true
             end
             if nowcor#Cor Info
-                index1 = complete_cases(df[:,[i,j]])
+                index1 = completecases(df[:,[i,j]])
 		if(issubtype(eltype(df[index1,i]),Real)&&issubtype(eltype(df[index1,j]),Real)==true)
 	                text0 = "Corr: "*string(trunc(cor(df[index1,i],df[index1,j]),4))
 		else

@@ -24,6 +24,12 @@ function ScatterMatrixPlot(olddf::DataFrame;colorido=[],filepath::AbstractString
 
         image1=draw(PNG(filepath1, xwidth, ywidth), pl1)
         image2=draw(PNG(filepath2, xwidth, ywidth), pl2)
+    elseif( (mime=="js.svg"||mime=="JS.SVG")==true)
+        filepath1=string(filepath1,".js.svg")
+        filepath2=string(filepath2,".js.svg")
+
+        image1=draw(SVG(filepath1, xwidth, ywidth), pl1)
+        image2=draw(SVG(filepath2, xwidth, ywidth), pl2)
     else
         filepath1=string(filepath1,".svg")
         filepath2=string(filepath2,".svg")
